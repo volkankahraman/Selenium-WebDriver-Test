@@ -16,8 +16,17 @@ var AsyncForEach = async function (array, callback) {
     }
 };
 
+const addBtn = '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[2]/div[3]/button',
+    addBtn2= '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[3]/div[3]/button',
+    goToCart = '//*[@id="undefined-sticky-wrapper"]/div/div/div/div/div/div/div[2]/div/a',
+    firstPriceTxt = '//*[@id="main"]/section/div/div/div/div/div[1]/div/div[2]/div[3]/div/div[4]/div/div[1]/div/div[2]',
+    secondPriceTxt = '//*[@id="main"]/section/div/div/div/div/div[1]/div/div[2]/div[4]/div/div[4]/div/div[1]/div/div[2]',
+    totalPriceTxt = '//*[@id="undefined-sticky-wrapper"]/div/div[1]/div/div[3]/div[3]/div[2]/div';
+
+
+
 (async function Tester() {
-    //#region İlk Seneryo 
+    //#region İlk Senaryo 
     let isPictureLoaded = true;
     let textElements= new Array();
     let driver = await new Builder().forBrowser('chrome').build();
@@ -39,21 +48,25 @@ var AsyncForEach = async function (array, callback) {
         await console.log("Resimler Doğrulandı.");
     else
         await console.log("Resimler Yüklenmedi!");
-    //#region İkinci Seneryo
+
+    //#region İkinci Senaryo
     await driver.get('https://www.vargonen.com/domain/domain-sorgulama');
     await driver.findElement(By.id("domainName")).sendKeys("denemealanadiarama.com");
     await driver.findElement(By.xpath('//*[@id="DomainForm"]/div/div/button')).click();
-    await driver.wait(until.elementLocated(By.xpath('//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[2]/div[3]/button'))).click();
-    await driver.wait(until.elementLocated(By.xpath('//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[3]/div[3]/button'))).click();
-    await driver.wait(until.elementLocated(By.xpath('//*[@id="undefined-sticky-wrapper"]/div/div/div/div/div/div/div[2]/div/a'))).click();
+    await driver.wait(until.elementLocated(By.xpath(addBtn))).click();
+    await driver.wait(until.elementLocated(By.xpath(addBtn2))).click();
+    await driver.wait(until.elementLocated(By.xpath(goToCart))).click();
     await driver.get('https://www.vargonen.com/sepet');
-    textElements[0] = await driver.wait(until.elementLocated(By.xpath('//*[@id="main"]/section/div/div/div/div/div[1]/div/div[2]/div[3]/div/div[4]/div/div[1]/div/div[2]'))).getText();
-    textElements[1] = await driver.wait(until.elementLocated(By.xpath('//*[@id="main"]/section/div/div/div/div/div[1]/div/div[2]/div[4]/div/div[4]/div/div[1]/div/div[2]'))).getText();
-    textElements[2] = await driver.wait(until.elementLocated(By.xpath('//*[@id="undefined-sticky-wrapper"]/div/div[1]/div/div[3]/div[3]/div[2]/div'))).getText();
+    textElements[0] = await driver.wait(until.elementLocated(By.xpath(firstPriceTxt))).getText();
+    textElements[1] = await driver.wait(until.elementLocated(By.xpath(secondPriceTxt))).getText();
+    textElements[2] = await driver.wait(until.elementLocated(By.xpath(totalPriceTxt))).getText();
     let totalAmount = ConvertToFloat(textElements[0])+ConvertToFloat(textElements[1]);
+
     if(totalAmount == ConvertToFloat(textElements[2]))
         await console.log("Fiyatlar doğru hesaplandı.");
     else
         await console.log("Fiyat hesaplanmasında hata!");
-
+        
+    await driver.sleep(2000);
+    await driver.close();
 })();
