@@ -1,6 +1,7 @@
 const {Builder, By, until} = require('selenium-webdriver');
 const fetch = require('node-fetch');
 
+//node-fetch adlı kütüphane ile resimlerin headerının 200-400 aralığında yani yüklendiğini kontrol etmek için kullanılmıştır.
 var isLoaded = async function (url) {
     const response = await fetch(url, {
         method: 'HEAD'
@@ -10,13 +11,16 @@ var isLoaded = async function (url) {
 var ConvertToFloat = function(text){
     return parseFloat(text.replace('\n,','.'));
 };
+//Foreach fonksiyonunu async olarak kullanabilmek için yazılmıştır.
 var AsyncForEach = async function (array, callback) {
     for (let index = 0; index < array.length; index++) {
         await callback(array[index], index, array);
     }
 };
 
-const addBtn = '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[2]/div[3]/button',
+// Xpath stringleri
+const  searchBtn = '//*[@id="DomainForm"]/div/div/button', 
+    addBtn = '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[2]/div[3]/button',
     addBtn2= '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[3]/div[3]/button',
     goToCart = '//*[@id="undefined-sticky-wrapper"]/div/div/div/div/div/div/div[2]/div/a',
     firstPriceTxt = '//*[@id="main"]/section/div/div/div/div/div[1]/div/div[2]/div[3]/div/div[4]/div/div[1]/div/div[2]',
@@ -52,7 +56,7 @@ const addBtn = '//*[@id="main"]/section/div[2]/div[2]/div/div/div[1]/div/div[2]/
     //#region İkinci Senaryo
     await driver.get('https://www.vargonen.com/domain/domain-sorgulama');
     await driver.findElement(By.id("domainName")).sendKeys("denemealanadiarama.com");
-    await driver.findElement(By.xpath('//*[@id="DomainForm"]/div/div/button')).click();
+    await driver.findElement(By.xpath(searchBtn)).click();
     await driver.wait(until.elementLocated(By.xpath(addBtn))).click();
     await driver.wait(until.elementLocated(By.xpath(addBtn2))).click();
     await driver.wait(until.elementLocated(By.xpath(goToCart))).click();
