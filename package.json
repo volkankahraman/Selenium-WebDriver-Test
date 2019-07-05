@@ -1,0 +1,25 @@
+{
+  "name": "selenium-webdriver-test",
+  "version": "1.0.0",
+  "description": "Simple WebdriverJs project to automate tests",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "web",
+    "driver",
+    "selenium",
+    "nodejs",
+    "javascript",
+    "chrome"
+  ],
+  "author": "Volkan Kahraman",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "selenium-webdriver": "^4.0.0-alpha.4",
+    "url-exists": "^1.0.3"
+  }
+}
