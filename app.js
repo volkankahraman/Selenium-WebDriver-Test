@@ -51,7 +51,7 @@ var AsyncForEach = async function (array, callback) {
     });
     await http.createServer(function (req, res) {
         if(isPictureLoaded)
-            res.write("Resimler Dogrulandı.");
+            res.write("Resimler Dogrulandi.");
         else
             res.write("Resimler Yuklenmedi!");
         res.end(); //end the response
