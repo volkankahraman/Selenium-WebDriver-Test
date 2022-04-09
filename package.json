@@ -18,7 +18,7 @@
   "author": "Volkan Kahraman",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "selenium-webdriver": "^4.0.0-alpha.4",
     "url-exists": "^1.0.3"
   }
