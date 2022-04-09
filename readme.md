@@ -1,13 +1,16 @@
 # Selenium WebDriver with NodeJS
 Simple WebdriverJs project to automate tests using selenium-webdriver and node-fetch libraries
 
+[Online ve headless çalışan heroku uygulama linki](https://selenium-webdriver-test.herokuapp.com/)
+=======
 ### Macte
 > brew install selenium-server-standalone
 ### Windowsta
 [Buradan indirin](https://chromedriver.storage.googleapis.com/index.html?path=76.0.3809.25/)
 
-> Ve Bilgisayarın PATH kısmına indirdiğiniz dosyanın yolunu ekleyin. Kesinlikle pcye reset atın (Yarım saat bunun ne sorunu var dememek için :/)
+(Link geç açılıyor çünkü heroku ücretsiz bir platform olduğu için uygulamayı uyku moduna alıyor.)
 
+<
 Çalıştırmak için;
 > npm start
 
